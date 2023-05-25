@@ -14,7 +14,7 @@ class Search extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     const { albums, searchValue } = this.state;
     if (prevState.albums !== albums && albums.length > 0 && searchValue !== '') {
       this.setState({
@@ -109,33 +109,34 @@ class Search extends React.Component {
 
             {albums.map((album) => (
               <div key={ album.collectionId }>
-                <img src={ album.artworkUrl100 } alt={ album.collectionName } />
                 <Link
                   to={ `/album/${album.collectionId}` }
                   data-testid={ `link-to-album-${album.collectionId}` }
                 >
+                  <img src={ album.artworkUrl100 } alt={ album.collectionName } />
                   {album.collectionName}
+
+                  <p>
+                    Artista:
+                    {' '}
+                    {album.artistName}
+                  </p>
+                  <p>
+                    Preço:
+                    {' '}
+                    {album.collectionPrice}
+                  </p>
+                  <p>
+                    Data de lançamento:
+                    {' '}
+                    {album.releaseDate}
+                  </p>
+                  <p>
+                    Número de faixas:
+                    {' '}
+                    {album.trackCount}
+                  </p>
                 </Link>
-                <p>
-                  Artista:
-                  {' '}
-                  {album.artistName}
-                </p>
-                <p>
-                  Preço:
-                  {' '}
-                  {album.collectionPrice}
-                </p>
-                <p>
-                  Data de lançamento:
-                  {' '}
-                  {album.releaseDate}
-                </p>
-                <p>
-                  Número de faixas:
-                  {' '}
-                  {album.trackCount}
-                </p>
               </div>
             ))}
           </>
