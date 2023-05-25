@@ -37,7 +37,7 @@ function Album() {
   };
 
   return (
-    <div>
+    <div data-testid="page-album">
       <h2 data-testid="artist-name">{artistName}</h2>
       <h3 data-testid="album-name">{albumName}</h3>
       {musics.slice(1).map((music) => (
